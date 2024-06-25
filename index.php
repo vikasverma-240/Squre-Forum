@@ -28,6 +28,7 @@
      
      while($row = mysqli_fetch_assoc($result)){
 
+        $id = $row['categories_id'];
         $cat = $row['categories_name'];
         $catDesc = $row['categories_description'];
 
@@ -36,9 +37,9 @@
             <div class="card" style="width: 18rem;">
                 <img src="https://img.freepik.com/free-photo/programming-background-with-person-working-with-codes-computer_23-2150010125.jpg?t=st=1719134641~exp=1719138241~hmac=2204457f2b2a4a9e45b9f25d486de1950c1ee567fbd70bb5a333e24eed6f11fc&w=740" class="card-img-top" alt="..." height="200" width="400">
                 <div class="card-body">
-                    <h5 class="card-title">'. $cat .'</h5>
+                    <h5 class="card-title"> <a href="thredlist.php?catid='. $id .'">'. $cat .'</a></h5>
                     <p class="card-text">'. substr($catDesc, 0, 120) .'</p>
-                    <a href="#" class="btn btn-primary">View threds</a>
+                    <a href="thredlist.php?catid='. $id .'" class="btn btn-primary">View threds</a>
                 </div>
             </div>
         </div>';
