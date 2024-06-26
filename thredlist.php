@@ -100,10 +100,12 @@ if($method == 'POST'){
             $id = $row['thred_id'];
             $thred_ques = $row['thred_title'];
             $thred_ques_desc = $row['thred_desc'];
+            $thred_time = $row['date'];
 
             echo '<div class="media d-flex gap-3 my-3">
             <img src="./components/userDefault.png" height="50" width="50" alt="" srcset="">
             <div class="media-body">
+                <p class="font-weight-bold my-0">Anonimus User at '. $thred_time .'</p>
                 <h5 class="mt-0"><a href="thred.php?thredid=' . $id . ' ">' . $thred_ques . '</a></h5>
                 <p>' . $thred_ques_desc . '</p>
             </div>

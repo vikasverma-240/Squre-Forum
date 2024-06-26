@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Squre Forum</a>
@@ -30,22 +32,41 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <li class="nav-item">
                         <a class="nav-link " href="#">Contact</a>
                     </li>
-                </ul>
-                <form class="d-flex">
+                </ul>';
+                if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                    echo '<form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+                <p class="text-white mb-0 mx-2">Welcome '. $_SESSION['user_email'] .'</p>
+                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signupModal" type="submit">Log Out</button>';
+
+                }
+                else{
+                echo '<form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <p>Welcome Vikas</p>
                 <div class="mx-2">
                     <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#loginModal" type="submit" >login</button>
 
                     <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signupModal" type="submit">Sign Up</button>
-                </div>
+                </div>';
+                }
 
-            </div>
+            echo'</div>
         </div>
     </nav>';
 
     include '_loginmodal.php';
     include '_signupmodal.php';
+
+    if(isset($_GET['signupsuccess']) && $_GET['signupsuccess'] == "true"){
+        echo '<div class="alert alert-success alert-dismissible fade show my-0" role="alert">
+  <strong>Sign Up Successfully!</strong> Please go to the login page.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+    }
 
 ?>
